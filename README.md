@@ -1,2 +1,2 @@
 # gootloader
-Create your bootloader with Go.
+Create bootloaders with Go.
