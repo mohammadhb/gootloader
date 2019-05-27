@@ -7,11 +7,11 @@ Start with creating a Bootloader with your config :
 ```go
 
 bl := Bootloader{
-		name:     "myBootloader",
-		arch:     1,      // Bootloader Architecture
-		modeBit:  16,     // Bootloader Bit Mode
-		loaddest: 0x7C00, // Destination of loading of bootloader in Memory
-	}
+    name:     "myBootloader",
+    arch:     1,      // Bootloader Architecture
+    modeBit:  16,     // Bootloader Bit Mode
+    loaddest: 0x7C00, // Destination of loading of bootloader in Memory
+}
   
 ```
 
