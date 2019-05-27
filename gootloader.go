@@ -2,7 +2,7 @@ package gootloader
 
 import "C"
 import "fmt"
-import "io/ioutil"
+// import "io/ioutil"
 import "strconv"
 
 //Bootloader data structure
