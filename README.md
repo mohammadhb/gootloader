@@ -1,3 +1,5 @@
+![alt text](https://github.com/mohammadhb/gootloader/blob/master/logo.png)
+
 # Gootloader
 Create bootloaders with Go.
 
