@@ -30,7 +30,7 @@ func (r *Bootloader) addInstruction(instruction string) int {
 	return 1
 
 }
-func (r *Bootloader) create() int {
+func (r *Bootloader) Create() int {
 
 	fmt.Println("org " + strconv.Itoa(r.Loaddest))
 	r.Instructions = append([]string{"org " + strconv.Itoa(r.Loaddest) + "\n"}, r.Instructions...)
@@ -55,7 +55,7 @@ func (r *Bootloader) create() int {
 
 }
 
-func (r *Bootloader) print(message string) int {
+func (r *Bootloader) Print(message string) int {
 
 	var loopIns = [...]string{
 		".loop	lodsb\n",
