@@ -1,10 +1,11 @@
 package gootloader
 
 import "C"
-import "fmt"
-
-// import "io/ioutil"
-import "strconv"
+import (
+	"fmt"
+	"io/ioutil"
+	"strconv"
+)
 
 //Bootloader data structure
 type Bootloader struct {
@@ -14,6 +15,10 @@ type Bootloader struct {
 	Instructions []string
 	Loaddest     int
 }
+
+const (
+	_ggl_Halt = "halt: hlt\n"
+)
 
 func (r *Bootloader) getName(title string) int {
 	println(title + r.Name)
@@ -25,13 +30,13 @@ func (r *Bootloader) addInstruction(instruction string) int {
 	return 1
 
 }
-func (r *Bootloader) create() string {
+func (r *Bootloader) create() int {
 
 	fmt.Println("org " + strconv.Itoa(r.Loaddest))
 	r.Instructions = append([]string{"org " + strconv.Itoa(r.Loaddest) + "\n"}, r.Instructions...)
 	r.Instructions = append([]string{"bits " + strconv.Itoa(r.ModeBit) + "\n"}, r.Instructions...)
 
-	r.addInstruction("halt: hlt\n")
+	r.addInstruction(_ggl_Halt)
 
 	r.addInstruction("times 510 - ($ - $$) db 0\n")
 	r.addInstruction("dw 0xAA55")
@@ -44,7 +49,9 @@ func (r *Bootloader) create() string {
 
 	}
 
-	return cInst
+	ioutil.WriteFile(r.Name+".asm", []byte(cInst), 0644)
+
+	return 1
 
 }
 
