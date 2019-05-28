@@ -1,4 +1,4 @@
-package main
+package gootloader
 
 import "C"
 import "fmt"
