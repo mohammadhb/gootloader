@@ -49,7 +49,7 @@ func (r *Bootloader) Create() int {
 
 	}
 
-	ioutil.WriteFile(r.Name+".asm", []byte(cInst), 0644)
+	ioutil.WriteFile("./"+r.Name+".asm", []byte(cInst), 0644)
 
 	return 1
 
