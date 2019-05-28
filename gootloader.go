@@ -1,17 +1,18 @@
-package gootloader
+package main
 
 import "C"
 import "fmt"
+
 // import "io/ioutil"
 import "strconv"
 
 //Bootloader data structure
 type Bootloader struct {
-	name             string
-	arch             int // Architecture 32 or 64
-	modeBit          int // Workspace mode in bits 16 or 32
-	instructions     []string
-	loaddest 		 int
+	name         string
+	arch         int // Architecture 32 or 64
+	modeBit      int // Workspace mode in bits 16 or 32
+	instructions []string
+	loaddest     int
 }
 
 func (r *Bootloader) getName(title string) int {
@@ -25,11 +26,11 @@ func (r *Bootloader) addInstruction(instruction string) int {
 
 }
 func (r *Bootloader) create() string {
-	
-	fmt.Println("org "+strconv.Itoa(r.loaddest))
-	r.instructions = append([]string{"org "+strconv.Itoa(r.loaddest)+"\n"},r.instructions...)
-	r.instructions = append([]string{"bits "+strconv.Itoa(r.modeBit)+"\n"},r.instructions...)
-   
+
+	fmt.Println("org " + strconv.Itoa(r.loaddest))
+	r.instructions = append([]string{"org " + strconv.Itoa(r.loaddest) + "\n"}, r.instructions...)
+	r.instructions = append([]string{"bits " + strconv.Itoa(r.modeBit) + "\n"}, r.instructions...)
+
 	r.addInstruction("halt: hlt\n")
 
 	r.addInstruction("times 510 - ($ - $$) db 0\n")
@@ -37,9 +38,9 @@ func (r *Bootloader) create() string {
 
 	cInst := ""
 
-	for _,element := range r.instructions {
+	for _, element := range r.instructions {
 
-		cInst+=element
+		cInst += element
 
 	}
 
@@ -64,7 +65,6 @@ func (r *Bootloader) print(message string) int {
 	}
 
 	r.addInstruction("msg: db \"" + message + "\", 0\n")
-	
 
 	return 1
 
