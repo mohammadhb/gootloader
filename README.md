@@ -31,6 +31,31 @@ Create Your Bootloader :
 bl.create();//AKA final file for bootloader
 
 ```
+## Hello World Example
+
+in main.go file :
+
+```go
+
+package main
+
+import (
+	gootloader "github.com/mohammadhb/gootloader"
+)
+
+func main() {
+
+	bl := gootloader.Bootloader{
+		Name: "MyFirstBootloader",
+	}
+
+	bl.Print("Hello World!")
+	bl.Create()
+
+}
+
+```
+> run go run main.gp
 
 ## Emulate and Testings the Bootloader
 
